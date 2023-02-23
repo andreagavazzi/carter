@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>carter</name>
+  <version>0.1.0</version>
+  <description>
+    ROS packages for the Carter (meta package)
+  </description>
+  <license>Apache 2.0</license>
+  <license>BSD</license>
+  <author email="andrea.gavazzi@me.com">Andrea</author>
+  <url type="repository">https://github.com/andreagavazzi/cartet</url>
+  <buildtool_depend>catkin</buildtool_depend>
+  <exec_depend>carter_bringup</exec_depend>
+  <exec_depend>carter_description</exec_depend>
+  <exec_depend>carter_teleop</exec_depend>
+  <export><metapackage/></export>
+</package>

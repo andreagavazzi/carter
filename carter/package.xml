@@ -8,7 +8,8 @@
   <license>Apache 2.0</license>
   <license>BSD</license>
   <author email="andrea.gavazzi@me.com">Andrea</author>
-  <url type="repository">https://github.com/andreagavazzi/cartet</url>
+  <maintainer email="andrea.gavazzi@me.com">Andrea</maintainer>
+  <url type="repository">https://github.com/andreagavazzi/carter</url>
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>carter_bringup</exec_depend>
   <exec_depend>carter_description</exec_depend>

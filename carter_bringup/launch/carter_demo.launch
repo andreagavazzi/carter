@@ -2,7 +2,7 @@
 
   <param name="robot_description" textfile="$(find carter_description)/urdf/carter.urdf" />
 
-  <!-- robot_state_publisher pubblica il jpoint_state sul tf per visualizzarlo in rviz -->
+  <!-- robot_state_publisher pubblica il joint_state sul tf  -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 
   <node name="jsp_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />

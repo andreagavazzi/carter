@@ -1,16 +1,12 @@
 <launch>
 
   <param name="robot_description" textfile="$(find carter_description)/urdf/carter.urdf" />
-
-  <!-- robot_state_publisher pubblica il jpoint_state sul tf per visualizzarlo in rviz -->
-  <!-- <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" /> -->
   
-  
+  <!-- robot_state_publisher pubblica il joint_state sul tf  -->
   <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="50.0" />
     <param name="tf_prefix" value=""/>
   </node>
-
 
   <arg name="multi_robot_name" default=""/>
 
@@ -20,7 +16,6 @@
     <param name="tf_prefix" value="$(arg multi_robot_name)"/>
   </node>
 
-
-
+  <node pkg="carter_bringup" type="carter_diagnostics" name="carter_diagnostics" output="screen"/>
 
 </launch>

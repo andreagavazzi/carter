@@ -7,6 +7,6 @@
 
   <node name="jsp_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
 
-<!-- <node name="rviz" pkg="rviz" type="rviz" args="-d $(find ag_pan_tilt)/config/head.rviz" required="true" /> -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find carter_description)/config/demo.rviz" required="true" />
 
 </launch>

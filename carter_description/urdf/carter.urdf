@@ -3,52 +3,71 @@
   <!-- the model -->
   <link name="base_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
       <geometry>
         <mesh filename="file:/home/andrea/catkin_ws/src/carter/carter_description/meshes/low/base.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
+      <material name="grey">
+        <color rgba="0.85 0.85 0.85 1.0"/>
       </material>
     </visual>
   </link>
 
-  <link name="wheel_r">
+  <link name="wheel_right_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0.000076 0.009999 0.1242" rpy="1.5708 0 0"/>
       <geometry>
-        <mesh filename="file:/home/andrea/catkin_ws/src/carter/carter_description/meshes/wheel_r.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:/home/andrea/catkin_ws/src/carter/carter_description/meshes/wheel_right.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
+      <material name="grey">
+        <color rgba="0.85 0.85 0.85 1.0"/>
       </material>
     </visual>
   </link>
 
-  <link name="wheel_l">
+  <link name="wheel_left_link">
     <visual>
-      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <origin xyz="0.000076 0.009999 -0.1242" rpy="1.5708 0 0" />
       <geometry>
-        <mesh filename="file:/home/andrea/catkin_ws/src/carter/carter_description/meshes/wheel_l.stl" scale="0.001 0.001 0.001"/>
+        <mesh filename="file:/home/andrea/catkin_ws/src/carter/carter_description/meshes/wheel_left.stl" scale="0.001 0.001 0.001"/>
       </geometry>
-      <material name="Cyan">
-        <color rgba="0 1.0 1.0 1.0"/>
+      <material name="grey">
+        <color rgba="0.85 0.85 0.85 1.0"/>
       </material>
     </visual>
   </link>
 
-  <joint name="wheel_r_joint" type="continuous">
+  <link name="wheel_rear_link">
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="file:/home/andrea/catkin_ws/src/carter/carter_description/meshes/low/wheel_rear.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.85 0.85 0.85 1.0"/>
+      </material>
+    </visual>
+  </link>
+
+  <joint name="wheel_right_joint" type="continuous">
     <parent link="base_link"/>
-    <child link="wheel_r"/>
-    <origin xyz="0.1242 -0.000183 0.009979" rpy="0 0 0" />
-    <axis xyz="1 0 0" />
+    <child link="wheel_right_link"/>
+    <origin xyz="-0.000076 -0.1242 0.009999" rpy="-1.5708 0 0" />
+    <axis xyz="0 0 1" />
   </joint>
 
-  <joint name="wheel_l_joint" type="continuous">
+  <joint name="wheel_left_joint" type="continuous">
     <parent link="base_link"/>
-    <child link="wheel_l"/>
+    <child link="wheel_left_link"/>
+    <origin xyz="-0.000076 0.1242 0.009999" rpy="-1.5708 0 0" />
+    <axis xyz="0 0 1" />
+  </joint>
+
+  <joint name="wheel_rear_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="wheel_rear_link"/>
     <origin xyz="0 0 0" rpy="0 0 0" />
-    <axis xyz="1 0 0" />
+    <axis xyz="0 0 0" />
   </joint>
 
 </robot>

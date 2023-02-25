@@ -193,7 +193,7 @@ void msgPub()
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "turtlebot3_diagnostic");
+  ros::init(argc, argv, "carter_diagnostic");
   ros::NodeHandle nh;
 
   tb3_diagnostics_pub  = nh.advertise<diagnostic_msgs::DiagnosticArray>("diagnostics", 10);

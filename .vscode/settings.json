@@ -3,5 +3,9 @@
         "/home/andrea/catkin_ws/devel/lib/python3/dist-packages",
         "/opt/ros/noetic/lib/python3/dist-packages"
     ],
-    "cmake.sourceDirectory": "${workspaceFolder}/carter"
+    "cmake.sourceDirectory": "${workspaceFolder}/carter",
+    "python.analysis.extraPaths": [
+        "/home/andrea/catkin_ws/devel/lib/python3/dist-packages",
+        "/opt/ros/noetic/lib/python3/dist-packages"
+    ]
 }

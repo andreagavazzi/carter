@@ -35,8 +35,8 @@ if os.name == 'nt':
 else:
   import tty, termios
 
-BURGER_MAX_LIN_VEL = 0.22
-BURGER_MAX_ANG_VEL = 2.84
+BURGER_MAX_LIN_VEL = 0.89
+BURGER_MAX_ANG_VEL = 4.57
 
 WAFFLE_MAX_LIN_VEL = 0.26
 WAFFLE_MAX_ANG_VEL = 1.82
@@ -45,7 +45,7 @@ LIN_VEL_STEP_SIZE = 0.01
 ANG_VEL_STEP_SIZE = 0.1
 
 msg = """
-Control Your Carter!
+Control Your Carter
 ---------------------------
 Moving around:
         w
@@ -134,7 +134,7 @@ if __name__=="__main__":
     if os.name != 'nt':
         settings = termios.tcgetattr(sys.stdin)
 
-    rospy.init_node('turtlebot3_teleop')
+    rospy.init_node('carter_teleop')
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
 
     turtlebot3_model = rospy.get_param("model", "burger")

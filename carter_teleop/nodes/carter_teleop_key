@@ -29,23 +29,17 @@
 
 import rospy
 from geometry_msgs.msg import Twist
-import sys, select, os
-if os.name == 'nt':
-  import msvcrt, time
-else:
-  import tty, termios
+import sys, select
+import tty, termios
 
-BURGER_MAX_LIN_VEL = 0.89
-BURGER_MAX_ANG_VEL = 4.57
-
-WAFFLE_MAX_LIN_VEL = 0.26
-WAFFLE_MAX_ANG_VEL = 1.82
+MAX_LIN_VEL = 0.89
+MAX_ANG_VEL = 4.57
 
 LIN_VEL_STEP_SIZE = 0.01
 ANG_VEL_STEP_SIZE = 0.1
 
 msg = """
-Control Your Carter
+Control Carter
 ---------------------------
 Moving around:
         w
@@ -65,18 +59,6 @@ Communications Failed
 """
 
 def getKey():
-    if os.name == 'nt':
-        timeout = 0.1
-        startTime = time.time()
-        while(1):
-            if msvcrt.kbhit():
-                if sys.version_info[0] >= 3:
-                    return msvcrt.getch().decode()
-                else:
-                    return msvcrt.getch()
-            elif time.time() - startTime > timeout:
-                return ''
-
     tty.setraw(sys.stdin.fileno())
     rlist, _, _ = select.select([sys.stdin], [], [], 0.1)
     if rlist:
@@ -111,28 +93,16 @@ def constrain(input, low, high):
     return input
 
 def checkLinearLimitVelocity(vel):
-    if turtlebot3_model == "burger":
-      vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
-    elif turtlebot3_model == "waffle" or turtlebot3_model == "waffle_pi":
-      vel = constrain(vel, -WAFFLE_MAX_LIN_VEL, WAFFLE_MAX_LIN_VEL)
-    else:
-      vel = constrain(vel, -BURGER_MAX_LIN_VEL, BURGER_MAX_LIN_VEL)
-
+    vel = constrain(vel, -MAX_LIN_VEL, MAX_LIN_VEL)
     return vel
 
 def checkAngularLimitVelocity(vel):
-    if turtlebot3_model == "burger":
-      vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
-    elif turtlebot3_model == "waffle" or turtlebot3_model == "waffle_pi":
-      vel = constrain(vel, -WAFFLE_MAX_ANG_VEL, WAFFLE_MAX_ANG_VEL)
-    else:
-      vel = constrain(vel, -BURGER_MAX_ANG_VEL, BURGER_MAX_ANG_VEL)
-
+    vel = constrain(vel, -MAX_ANG_VEL, MAX_ANG_VEL)
     return vel
 
 if __name__=="__main__":
-    if os.name != 'nt':
-        settings = termios.tcgetattr(sys.stdin)
+
+    settings = termios.tcgetattr(sys.stdin)
 
     rospy.init_node('carter_teleop')
     pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
@@ -197,6 +167,5 @@ if __name__=="__main__":
         twist.linear.x = 0.0; twist.linear.y = 0.0; twist.linear.z = 0.0
         twist.angular.x = 0.0; twist.angular.y = 0.0; twist.angular.z = 0.0
         pub.publish(twist)
-
-    if os.name != 'nt':
+        
         termios.tcsetattr(sys.stdin, termios.TCSADRAIN, settings)
